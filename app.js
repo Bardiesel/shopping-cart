@@ -139,9 +139,7 @@ class View {
     }
 
     populate(cart) {
-        cart.forEach(item => {
-            return this.addCartItem(item)
-        })
+        cart.forEach(item => this.addCartItem(item))
     }
 
     hideCart() {
@@ -168,9 +166,7 @@ class View {
                 let addAmount = event.target
                 let id = addAmount.dataset.id
 
-                let product = cart.find((item) => {
-                    return item.id === id
-                })
+                let product = cart.find((item) => item.id === id)
 
                 product.amount = product.amount + 1
 
@@ -184,9 +180,7 @@ class View {
                 let lowerAmount = event.target
                 let id = lowerAmount.dataset.id
 
-                let product = cart.find((item) => {
-                    return item.id === id
-                })
+                let product = cart.find((item) => item.id === id)
 
                 product.amount = product.amount - 1
 
@@ -204,13 +198,9 @@ class View {
 
 
     clearCart() {
-        let cartItems = cart.map(item => {
-            return item.id
-        })
+        let cartItems = cart.map(item => item.id)
 
-        cartItems.forEach(item => {
-            return this.removeProduct(item)
-        })
+        cartItems.forEach(item => this.removeProduct(item))
 
         while (cartContent.children.length > 0) {
             cartContent.removeChild(cartContent.children[0])
@@ -218,9 +208,7 @@ class View {
     }
 
     removeProduct(id) {
-        cart = cart.filter(item => {
-            return item.id !== id
-        })
+        cart = cart.filter(item => item.id !== id)
 
         this.setCartValues(cart)
         Storage.saveCart(cart)
